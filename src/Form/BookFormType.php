@@ -4,11 +4,13 @@ namespace App\Form;
 
 use App\Entity\Book;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class BookFormType extends AbstractType
 {
@@ -33,10 +35,10 @@ class BookFormType extends AbstractType
                     'error_bubbling' => true
             ])
             ->add('description', 
-                TextType::class,
+                TextareaType::class,
                 [
                     'label' => 'Description',
-                    'attr' => ['placeholder' => 'Book description'],
+                    'attr' => ['placeholder' => 'Book description', 'rows' => 3],
                     'error_bubbling' => true
                 ]
             )
@@ -56,6 +58,8 @@ class BookFormType extends AbstractType
                     'error_bubbling' => true,
                 ]
             )
+            ->add('submit',
+                SubmitType::class,)
         ;
     }
 
