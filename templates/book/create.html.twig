@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %} 
+
+{% block title %} {{ 'Create Book' }} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        {# header & breadcrumb #}
+        <section class="content-header">
+            <div class="container-fluid mt-3">
+                <div class="row mb-2">
+                    <div class="col-sm-6 px-0">
+                        <h3>Tambah Data Mahasiswa</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-end">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Tambah Mahasiswa</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container-fluid mt-5 px-0">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                Create Book
+                            </div>
+
+                            <div class="card-body">
+                                {{ form_start(form) }}
+                                <div class="mb-3 form-group">
+                                    {{ form_label(form.title) }}
+                                    {{ form_widget(form.title, { 'attr': { 'class': 'form-control' } }) }}
+
+                                    <!-- {% if form_errors(form.title) %}
+                                    <span class="text-danger">
+                                        {{ dump(form_errors(form.title)) }}
+                                    </span>
+                                    {% endif %} -->
+
+                                </div>
+                                <div class="mb-3 form-group">
+                                    {{ form_label(form.author) }}
+                                    {{ form_widget(form.author, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                                <div class="mb-3 form-group">
+                                    {{ form_label(form.description) }}
+                                    {{ form_widget(form.description, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                                <div class="mb-3 form-group">
+                                    {{ form_label(form.price) }}
+                                    {{ form_widget(form.price, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                                <div class="mb-3 form-group">
+                                    {{ form_label(form.imagePath) }}
+                                    {{ form_widget(form.imagePath, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                                <div class="mb-3 form-group">
+                                    {{ form_widget(form.submit, { 'attr': { 'class': 'btn btn-primary mt-3' } }) }}
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
