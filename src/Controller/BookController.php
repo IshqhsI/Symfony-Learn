@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -38,7 +39,23 @@ final class BookController extends AbstractController
 
         // Process Form
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($book);
+
+            $newBook = $form->getData();
+            $imageFile = $form->get('imagePath')->getData();
+
+            if($imageFile){
+                $newImageName = uniqid() . '.' . $imageFile->guessExtension();
+                
+                try {
+                    $imageFile->move($this->getParameter('kernel.project_dir') . '/public/uploads', $newImageName);
+                } catch (FileException $e) {
+                    return new Response($e->getMessage());
+                }
+                
+                $newBook->setImagePath('/uploads/' . $newImageName);
+            } 
+
+            $this->em->persist($newBook);
             $this->em->flush();
 
             $this->addFlash('success', 'Book created successfully!');
