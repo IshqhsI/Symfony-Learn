@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class BookFormType extends AbstractType
 {
@@ -21,41 +22,41 @@ class BookFormType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'Title',
-                    'attr' => ['placeholder' => 'Book title'],
+                    'attr' => ['placeholder' => 'Input Book title...'],
                     'required' => true,
-                    'error_bubbling' => true
                 ]
             )
             ->add('author', 
                 TextType::class,
                 [
                     'label' => 'Author',
-                    'attr' => ['placeholder' => 'Book author'],
+                    'attr' => ['placeholder' => 'Input Book author...'],
                     'required' => true,
-                    'error_bubbling' => true
             ])
             ->add('description', 
                 TextareaType::class,
                 [
                     'label' => 'Description',
-                    'attr' => ['placeholder' => 'Book description', 'rows' => 3],
-                    'error_bubbling' => true
+                    'attr' => ['placeholder' => 'Input Book description...', 'rows' => 4],
                 ]
             )
             ->add('price', 
                 NumberType::class,
                 [
                     'label' => 'Price',
-                    'attr' => ['placeholder' => 'Book price'],
-                    'error_bubbling' => true
+                    'attr' => ['placeholder' => 'Input Book price...'],
                ] 
             )
             ->add('imagePath', 
                 FileType::class,
                 [
-                    'label' => 'Image path',
-                    'attr' => ['placeholder' => 'Book image path'],
-                    'error_bubbling' => true,
+                    'label' => 'Image',
+                    'attr' => ['placeholder' => 'Input Book Cover...', 'accept' => 'image/*'],
+                    'mapped' => false,
+                    'required' => false,
+                    'constraints' => [
+                        new Assert\Image(['maxSize' => '2M'])
+                    ]
                 ]
             )
             ->add('submit',

@@ -9,19 +9,19 @@
         <section class="content-header">
             <div class="container-fluid mt-3">
                 <div class="row mb-2">
-                    <div class="col-sm-6 px-0">
-                        <h3>Create Book</h3>
+                    <div class="col-lg-6 px-0">
+                        <h3>Edit Book</h3>
                     </div>
-                    <div class="col-sm-6 ps-0">
+                    <div class="col-lg-6 ps-0">
                         <ol class="breadcrumb float-lg-end">
-                            <li class="breadcrumb-item"><a href="/books">Books</a></li>
-                            <li class="breadcrumb-item active">Create Book</li>
+                            <li class="breadcrumb-item"><a href="/">Books</a></li>
+                            <li class="breadcrumb-item active">Edit Book</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </section>
-
+        
         <hr/>
 
         <section class="content">
@@ -37,9 +37,10 @@
                                 {{ form_errors(form.imagePath) }} 
                             </span>
                         {# {% endif %} #}
+
                         <div class="card">
-                            <div class="card-header bg-primary text-white">
-                                Create Book
+                            <div class="card-header bg-success text-white">
+                                Edit Book
                             </div>
 
                             <div class="card-body">
@@ -65,10 +66,19 @@
                                     {{ form_widget(form.imagePath, { 'attr': { 'class': 'form-control' ~ (form_errors(form.imagePath) ? ' is-invalid' : '') } }) }}
                                 </div>
                                 <div class="mb-3 form-group">
-                                    {{ form_widget(form.submit, { 'attr': { 'class': 'btn btn-primary mt-3' } }) }}
-                                    
+                                    {{ form_widget(form.submit, { 'attr': { 'class': 'btn btn-success mt-3' } }) }}
                                 </div>
                                 {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                Book Cover
+                            </div>
+                            <div class="card-body">
+                                <img src="/{{ book.imagePath }}" class="img-fluid" alt="Book Cover">
                             </div>
                         </div>
                     </div>
